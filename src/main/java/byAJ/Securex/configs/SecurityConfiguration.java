@@ -28,9 +28,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                     .loginPage("/login") //up to this when authentication is required, redirect to login
                     .permitAll() // this will allow to grant access to unauthenticated users
                     .and()
+                        .logout()
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login").permitAll()
+                    .and()
                     .httpBasic();
-                   /* .logout()
-                        .permitAll();*/
+
         http
                 .formLogin().failureUrl("/login?error")
                 .defaultSuccessUrl("/")
