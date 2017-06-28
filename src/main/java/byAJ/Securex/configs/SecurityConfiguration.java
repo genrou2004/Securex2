@@ -19,10 +19,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/books/list").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
-                    .loginPage("/login");
+                    .loginPage("/login") //up to this when authentication is required, redirect to login
+                    .permitAll() // this will allow to grant access to unauthenticated users
+                    .and()
+                    .logout()
+                        .permitAll();
         http
                 .formLogin().failureUrl("/login?error")
                 .defaultSuccessUrl("/")
