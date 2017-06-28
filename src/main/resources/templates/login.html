@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org ">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="www.thymeleaf.org "
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,9 +29,32 @@
         You have been logged out.
     </div>
     <form th:action="@{/login}" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">User Name</label>
+            <div class="col-sm-10">
+                <input type="text" id="username" name="username" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" id="password" name="password"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" /> Remember me
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" value="Sign In">Sign in</button>
+            </div>
+        </div>
     </form>
 </div><!-- /.container -->
 
