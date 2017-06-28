@@ -21,14 +21,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                     .antMatchers("/").permitAll()
                     .antMatchers("/books/list").permitAll()
+                    .antMatchers("/books/edit/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .loginPage("/login") //up to this when authentication is required, redirect to login
                     .permitAll() // this will allow to grant access to unauthenticated users
                     .and()
-                    .logout()
-                        .permitAll();
+                    .httpBasic();
+                   /* .logout()
+                        .permitAll();*/
         http
                 .formLogin().failureUrl("/login?error")
                 .defaultSuccessUrl("/")
